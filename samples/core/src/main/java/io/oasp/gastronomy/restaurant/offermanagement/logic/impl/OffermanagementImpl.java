@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
 import io.oasp.gastronomy.restaurant.general.logic.base.AbstractComponentFacade;
 import io.oasp.gastronomy.restaurant.general.logic.base.UcManageBinaryObject;
@@ -414,19 +415,19 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
     PaginatedListTo<OfferEntity> offers = getOfferDao().findOffers(criteria);
     PaginatedListTo<OfferEto> result = mapPaginatedEntityList(offers, OfferEto.class);
     for (OfferEto offer : result.getResult()) {
-      SpecialEntity special = findBestPriceForOfferNow(offer.getId());
-      if (special != null) {
-        offer.setSpecialId(special.getId());
-        offer.setPrice(special.getSpecialPrice());
+      Money specialPrice = findBestPriceForOfferNow(offer.getId());
+      if (specialPrice != null) {
+        offer.setPrice(specialPrice);
       }
     }
     return result;
   }
 
-  private SpecialEntity findBestPriceForOfferNow(Long offerNumber) {
+  private Money findBestPriceForOfferNow(final Long offerNumber) {
 
     List<SpecialEntity> specials = getSpecialDao().findActiveSpecials(LocalDateTime.now());
-    return specials.stream().filter(special -> special.getId().equals(offerNumber)).findFirst().orElse(null);
+    return specials.stream().filter(special -> special.getOfferId().equals(offerNumber))
+        .map(SpecialEntity::getSpecialPrice).findFirst().orElse(null);
   }
 
   @Override

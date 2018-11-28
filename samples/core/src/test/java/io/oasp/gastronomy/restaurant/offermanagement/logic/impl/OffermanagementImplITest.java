@@ -1,5 +1,6 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 
 import javax.inject.Inject;
@@ -13,10 +14,16 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import io.oasp.gastronomy.restaurant.SpringBootApp;
+import io.oasp.gastronomy.restaurant.general.common.TestUtil;
+import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 import io.oasp.module.test.common.base.ComponentTest;
 
 /**
@@ -80,6 +87,34 @@ public class OffermanagementImplITest extends ComponentTest {
     SpecialEto findSpecial = this.offerManagementImpl.findSpecial(specialEto.getId());
   }
 
+  @Test
+  public void shouldReturnSpecialPriceForoffer() {
+
+    // login
+    TestUtil.login("chief", PermissionConstants.FIND_OFFER);
+
+    // given
+    OfferEntity offerEntity = new OfferEntity();
+    offerEntity.setPrice(new Money(new BigDecimal(80)));
+    this.offerDao.save(offerEntity);
+    SpecialEto special = getSpecialEtoForOffer("nameFour", offerEntity);
+
+    this.offerManagementImpl.saveSpecial(special);
+
+    OfferSearchCriteriaTo criteria = new OfferSearchCriteriaTo();
+    // when
+    PaginatedListTo<OfferEto> offers = this.offerManagementImpl.findOfferEtos(criteria);
+
+    assertThat(offers.getResult()).isNotEmpty();
+    OfferEto offerEto = offers.getResult().stream().filter(offer -> offer.getId().equals(offerEntity.getId()))
+        .findFirst().orElse(null);
+    assertThat(offerEto).isNotNull();
+    assertThat(offerEto.getPrice()).isEqualTo(new Money(new BigDecimal(50)));
+
+    TestUtil.logout();
+
+  }
+
   /**
    * @return
    */
@@ -88,9 +123,15 @@ public class OffermanagementImplITest extends ComponentTest {
     OfferEntity offer = new OfferEntity();
     this.offerDao.save(offer);
 
+    return getSpecialEtoForOffer(name, offer);
+  }
+
+  private SpecialEto getSpecialEtoForOffer(String name, OfferEntity offer) {
+
     SpecialEto special = new SpecialEto();
     assertThat(special.getId()).isNull();
     special.setName(name);
+    special.setSpecialPrice(new Money(new BigDecimal(50)));
     WeeklyPeriodEmbeddable activePeriod = new WeeklyPeriodEmbeddable();
     activePeriod.setEndingHour(14);
     activePeriod.setStartingHour(6);
