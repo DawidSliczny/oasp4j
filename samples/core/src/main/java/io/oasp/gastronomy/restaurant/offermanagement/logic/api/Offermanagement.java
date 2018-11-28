@@ -1,6 +1,12 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api;
 
+import java.sql.Blob;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.Special;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
@@ -13,12 +19,8 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
-
-import java.sql.Blob;
-import java.util.List;
-
-import javax.validation.Valid;
 
 /**
  * Interface for OfferManagement.
@@ -219,5 +221,34 @@ public interface Offermanagement {
    * @param productId is the ID of the {@link ProductEto} to delte the picture
    */
   void deleteProductPicture(Long productId);
+
+  /**
+   * If no ID is contained creates the {@link SpecialEto} for the first time. Else it updates the {@link SpecialEto}
+   * with given ID. If no {@link SpecialEto} with given ID is present, an exception will be thrown.
+   *
+   * @param product the {@link SpecialEto} to persist.
+   * @return the persisted {@link SpecialEto}.
+   */
+  SpecialEto saveSpecial(SpecialEto special);
+
+  /**
+   * Gets a {@link io.oasp.gastronomy.restaurant.offermanagement.common.api.Special} using its entity identifier.
+   *
+   * @param id is the {@link Special#getId() product ID}.
+   * @return the requested {@link SpecialEto} or {@code null} if no such {@link SpecialEto} exists.
+   */
+  SpecialEto findSpecial(Long specialId);
+
+  /**
+   * @return the {@link List} with all {@link SpecialEto}.
+   */
+  List<SpecialEto> findAllSpecials();
+
+  /**
+   * Deletes a {@link SpecialEto}.
+   *
+   * @param specialId is the ID of the {@link ProductEto} to delete
+   */
+  void deleteSpecial(Long specialId);
 
 }

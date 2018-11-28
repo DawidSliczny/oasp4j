@@ -1,4 +1,4 @@
-package io.oasp.gastronomy.restaurant.dataaccess.impl.dao;
+package io.oasp.gastronomy.restaurant.offermanagement.dataaccess.impl.dao;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -60,6 +60,9 @@ public class SpecialDaoTest extends ComponentTest {
 
     // then
     assertThat(special.getId()).isNotNull();
+
+    SpecialEntity findSpecial = this.specialDao.find(special.getId());
+    assertThat(findSpecial).isNotNull();
   }
 
   @Test

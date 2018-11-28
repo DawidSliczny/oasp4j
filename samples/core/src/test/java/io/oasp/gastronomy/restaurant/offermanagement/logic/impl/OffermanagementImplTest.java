@@ -112,5 +112,4 @@ public class OffermanagementImplTest extends ModuleTest {
     assertThat(responseOfferCto.getOffer()).isEqualTo(offerEto);
 
   }
-
 }
