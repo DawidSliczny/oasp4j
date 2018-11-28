@@ -29,7 +29,6 @@ INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, dr
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (6, 1, 0, 6.23, 5, null, 12, 'Pizza-Menü', 'Description of Pizza-Menü');
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (7, 1, 0, 5.99, 6, null, 12, 'Flammkuchen-Menü', 'Description of Flammkuchen-Menü');
 
-
 INSERT INTO RestaurantOrder (id, modificationCounter, tableId, state) VALUES (1, 1, 101, 1);
 
 INSERT INTO OrderPosition (id, modificationCounter, offerId, state, drinkState, orderId, price, offerName, comment) VALUES (1, 1, 1, 2, 2, 1, 6.99, 'Schnitzel-Menü', 'mit Ketschup');
@@ -46,8 +45,11 @@ INSERT INTO Bill (id, modificationCounter, payed, total,tip) VALUES (2, 1, true,
 INSERT INTO BillOrderPosition (billId, orderPositionsId) VALUES (2,3);
 INSERT INTO BillOrderPosition (billId, orderPositionsId) VALUES (2,4);
 
-
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (0, 0, 3, 'chief', 'Charly', 'Chief');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (1, 0, 0, 'cook', 'Carl', 'Cook');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (2, 0, 1, 'waiter', 'Willy', 'Waiter');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (3, 0, 2, 'barkeeper', 'Bianca', 'Barkeeper');
+
+INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (1, 0, 'Natural Fruit Exports', 'Fruit', 4);
+INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (2, 0, 'CPS Gourmet', 'Meat', 5);
+INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (3, 0, 'Albafrost', 'Vegetables', 3);

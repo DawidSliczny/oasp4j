@@ -62,10 +62,9 @@ public class OffermanagementImplITest extends ComponentTest {
 
     // given
     SpecialEto special = getSpecialEto("nameTwo");
-
-    // when
     SpecialEto specialEto = this.offerManagementImpl.saveSpecial(special);
 
+    // when
     SpecialEto findSpecial = this.offerManagementImpl.findSpecial(specialEto.getId());
 
     // then
@@ -78,12 +77,12 @@ public class OffermanagementImplITest extends ComponentTest {
 
     // given
     SpecialEto special = getSpecialEto("nameThree");
-
-    // when
     SpecialEto specialEto = this.offerManagementImpl.saveSpecial(special);
 
+    // when
     this.offerManagementImpl.deleteSpecial(specialEto.getId());
 
+    // then
     SpecialEto findSpecial = this.offerManagementImpl.findSpecial(specialEto.getId());
   }
 
@@ -98,19 +97,21 @@ public class OffermanagementImplITest extends ComponentTest {
     offerEntity.setPrice(new Money(new BigDecimal(80)));
     this.offerDao.save(offerEntity);
     SpecialEto special = getSpecialEtoForOffer("nameFour", offerEntity);
-
     this.offerManagementImpl.saveSpecial(special);
 
     OfferSearchCriteriaTo criteria = new OfferSearchCriteriaTo();
+
     // when
     PaginatedListTo<OfferEto> offers = this.offerManagementImpl.findOfferEtos(criteria);
 
+    // then
     assertThat(offers.getResult()).isNotEmpty();
     OfferEto offerEto = offers.getResult().stream().filter(offer -> offer.getId().equals(offerEntity.getId()))
         .findFirst().orElse(null);
     assertThat(offerEto).isNotNull();
     assertThat(offerEto.getPrice()).isEqualTo(new Money(new BigDecimal(50)));
 
+    // logout
     TestUtil.logout();
 
   }
@@ -133,10 +134,10 @@ public class OffermanagementImplITest extends ComponentTest {
     special.setName(name);
     special.setSpecialPrice(new Money(new BigDecimal(50)));
     WeeklyPeriodEmbeddable activePeriod = new WeeklyPeriodEmbeddable();
-    activePeriod.setEndingHour(14);
-    activePeriod.setStartingHour(6);
+    activePeriod.setEndingHour(23);
+    activePeriod.setStartingHour(0);
     activePeriod.setStartingDay(DayOfWeek.MONDAY);
-    activePeriod.setEndingDay(DayOfWeek.SATURDAY);
+    activePeriod.setEndingDay(DayOfWeek.SUNDAY);
     special.setActivePeriod(activePeriod);
     special.setOfferId(offer.getId());
     return special;
