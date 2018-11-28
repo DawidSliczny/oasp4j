@@ -22,6 +22,8 @@ public class OfferEto extends MenuItemEto implements Offer {
 
   private Long drinkId;
 
+  private Long specialId;
+
   private Long sideDishId;
 
   private OfferState state;
@@ -104,5 +106,17 @@ public class OfferEto extends MenuItemEto implements Offer {
   public void setState(OfferState state) {
 
     this.state = state;
+  }
+
+  @Override
+  public Long getSpecialId() {
+
+    return this.specialId;
+  }
+
+  @Override
+  public void setSpecialId(Long specialId) {
+
+    this.specialId = specialId;
   }
 }

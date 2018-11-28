@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -31,6 +32,8 @@ public class OfferEntity extends MenuItemEntity implements Offer {
   private MealEntity meal;
 
   private DrinkEntity drink;
+
+  private SpecialEntity special;
 
   private SideDishEntity sideDish;
 
@@ -230,5 +233,48 @@ public class OfferEntity extends MenuItemEntity implements Offer {
   public void setState(OfferState state) {
 
     this.state = state;
+  }
+
+  @Override
+  @Transient
+  public Long getSpecialId() {
+
+    if (this.special == null) {
+      return null;
+    }
+    return this.special.getId();
+  }
+
+  @Override
+  public void setSpecialId(Long specialId) {
+
+    if (specialId == null) {
+      this.special = null;
+    } else {
+      SpecialEntity specialEntity = new SpecialEntity();
+      specialEntity.setId(specialId);
+      this.special = specialEntity;
+    }
+  }
+
+  /**
+   * Returns the field 'sideDish'.
+   *
+   * @return Value of sideDish
+   */
+  @OneToOne(mappedBy = "offer")
+  public SpecialEntity getSpecial() {
+
+    return this.special;
+  }
+
+  /**
+   * Sets the field 'sideDish'.
+   *
+   * @param sideDish New value for sideDish
+   */
+  public void setSpecial(SpecialEntity special) {
+
+    this.special = special;
   }
 }

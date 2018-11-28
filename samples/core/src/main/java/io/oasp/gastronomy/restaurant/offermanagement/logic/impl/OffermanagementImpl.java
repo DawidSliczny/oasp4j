@@ -1,6 +1,7 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 
 import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -411,7 +412,21 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
 
     criteria.limitMaximumPageSize(MAXIMUM_HIT_LIMIT);
     PaginatedListTo<OfferEntity> offers = getOfferDao().findOffers(criteria);
-    return mapPaginatedEntityList(offers, OfferEto.class);
+    PaginatedListTo<OfferEto> result = mapPaginatedEntityList(offers, OfferEto.class);
+    for (OfferEto offer : result.getResult()) {
+      SpecialEntity special = findBestPriceForOfferNow(offer.getId());
+      if (special != null) {
+        offer.setSpecialId(special.getId());
+        offer.setPrice(special.getSpecialPrice());
+      }
+    }
+    return result;
+  }
+
+  private SpecialEntity findBestPriceForOfferNow(Long offerNumber) {
+
+    List<SpecialEntity> specials = getSpecialDao().findActiveSpecials(LocalDateTime.now());
+    return specials.stream().filter(special -> special.getId().equals(offerNumber)).findFirst().orElse(null);
   }
 
   @Override
