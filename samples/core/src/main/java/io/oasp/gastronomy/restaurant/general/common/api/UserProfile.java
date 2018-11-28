@@ -1,8 +1,8 @@
 package io.oasp.gastronomy.restaurant.general.common.api;
 
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Role;
-
 import java.security.Principal;
+
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Role;
 
 /**
  * This is the interface for the profile of a user interacting with this application. Currently this can only be a
@@ -22,6 +22,11 @@ public interface UserProfile extends Principal {
    * @return the unique login of the user for authentication and identification.
    */
   String getName();
+
+  /**
+   * @return the unique password of the user for authentication and identification.
+   */
+  String getPassword();
 
   /**
    * @return the first name of the users real name.

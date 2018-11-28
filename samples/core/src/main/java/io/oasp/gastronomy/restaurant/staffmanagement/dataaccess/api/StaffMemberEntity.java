@@ -1,12 +1,12 @@
 package io.oasp.gastronomy.restaurant.staffmanagement.dataaccess.api;
 
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Role;
-import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity;
-import io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Role;
+import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity;
+import io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember;
 
 /**
  * The {@link io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity persistent entity} for
@@ -20,6 +20,8 @@ public class StaffMemberEntity extends ApplicationPersistenceEntity implements S
   private static final long serialVersionUID = 1L;
 
   private String name;
+
+  private String password;
 
   private String firstName;
 
@@ -82,6 +84,18 @@ public class StaffMemberEntity extends ApplicationPersistenceEntity implements S
   public void setRole(Role role) {
 
     this.role = role;
+  }
+
+  @Override
+  public String getPassword() {
+
+    return this.password;
+  }
+
+  @Override
+  public void setPassword(String password) {
+
+    this.password = password;
   }
 
 }

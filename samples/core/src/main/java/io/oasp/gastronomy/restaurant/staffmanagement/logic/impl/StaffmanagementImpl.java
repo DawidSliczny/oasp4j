@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
@@ -39,11 +40,14 @@ public class StaffmanagementImpl extends AbstractComponentFacade implements Staf
   /** @see #getStaffMemberDao() */
   private StaffMemberDao staffMemberDao;
 
+  @Inject
+  private PasswordEncoder passwordEncoder;
+
   /**
    * Do not extract this method as a service, because of PermitAll. (only for login)
    */
   @Override
-  @RolesAllowed(PermissionConstants.FIND_STAFF_MEMBER)
+  // @RolesAllowed(PermissionConstants.FIND_STAFF_MEMBER)
   public StaffMemberEto findStaffMemberByLogin(String login) {
 
     return privateFindStaffMemberByLogin(login);
@@ -117,6 +121,7 @@ public class StaffmanagementImpl extends AbstractComponentFacade implements Staf
     Objects.requireNonNull(staffMember, "staffMember");
 
     Long id = staffMember.getId();
+    staffMember.setPassword(this.passwordEncoder.encode(staffMember.getPassword()));
     StaffMemberEntity targetStaffMember = null;
 
     if (id != null) {
@@ -133,8 +138,8 @@ public class StaffmanagementImpl extends AbstractComponentFacade implements Staf
             targetStaffMember.getName(), staffMember.getName());
       }
     }
-    StaffMemberEntity persistedStaffMember =
-        getStaffMemberDao().save(getBeanMapper().map(staffMember, StaffMemberEntity.class));
+    StaffMemberEntity persistedStaffMember = getStaffMemberDao()
+        .save(getBeanMapper().map(staffMember, StaffMemberEntity.class));
     return getBeanMapper().map(persistedStaffMember, StaffMemberEto.class);
   }
 

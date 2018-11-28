@@ -16,6 +16,11 @@ public interface StaffMember extends ApplicationEntity, UserProfile {
   void setName(String name);
 
   /**
+   * @param password is the new {@link #getPassword() password}.
+   */
+  void setPassword(String password);
+
+  /**
    * @param firstName is the new {@link #getFirstName() first name}.
    */
   void setFirstName(String firstName);

@@ -45,12 +45,12 @@ INSERT INTO Bill (id, modificationCounter, payed, total,tip) VALUES (2, 1, true,
 INSERT INTO BillOrderPosition (billId, orderPositionsId) VALUES (2,3);
 INSERT INTO BillOrderPosition (billId, orderPositionsId) VALUES (2,4);
 
-INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (0, 0, 3, 'chief', 'Charly', 'Chief');
-INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (1, 0, 0, 'cook', 'Carl', 'Cook');
-INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (2, 0, 1, 'waiter', 'Willy', 'Waiter');
-INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (3, 0, 2, 'barkeeper', 'Bianca', 'Barkeeper');
-INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (4, 0, 4, 'manager', 'Marco', 'Manager');
-
+INSERT INTO StaffMember (id, modificationCounter, role, login, password, firstname, lastname) VALUES (0, 0, 3, 'chief', '902c3e8d851b85bdf9ba0e1ce4435d600fb1eb486fe285237272b659f92e265f0e18eb7bfd69aad1', 'Charly', 'Chief');
+INSERT INTO StaffMember (id, modificationCounter, role, login, password, firstname, lastname) VALUES (1, 0, 0, 'cook', '8a1bb927dfefeeef076d2089bca8188acc4cf31ca57d31918d6fd3216c7360998693e5727d9742b8', 'Carl', 'Cook');
+INSERT INTO StaffMember (id, modificationCounter, role, login, password, firstname, lastname) VALUES (2, 0, 1, 'waiter', '6bb7dd65a501a979b48162b9c020acd0b11fd6606032f201e489e86d88ecb93f185cb126742604b7', 'Willy', 'Waiter');
+INSERT INTO StaffMember (id, modificationCounter, role, login, password, firstname, lastname) VALUES (3, 0, 2, 'barkeeper', 'e6c9bef98b0802a35e2818f9cdfc837ea57becbd04f85ecff623566dcc8e982b025e22da2da32c14', 'Bianca', 'Barkeeper');
+INSERT INTO StaffMember (id, modificationCounter, role, login, password, firstname, lastname) VALUES (4, 0, 4, 'manager', '20ac634fe483148d883ef45d503047ededdc115e833b4cd783b9160727bc142b748129d33e509b69', 'Marco', 'Manager');
+INSERT INTO StaffMember (id, modificationCounter, role, login, password, firstname, lastname) VALUES (5, 0, 3, 'root', 'a3e7b4ef424301b9fd63d61b35b09ab2c9a3764812cd8c030836db54647812b0772224ac6261c5cd', 'Marco', 'Manager');
 
 INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (1, 0, 'Natural Fruit Exports', 'Fruit', 4);
 INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (2, 0, 'CPS Gourmet', 'Meat', 5);
