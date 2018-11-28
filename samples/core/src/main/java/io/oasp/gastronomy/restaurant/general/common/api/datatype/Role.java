@@ -35,8 +35,14 @@ public enum Role implements Principal {
    * AccessControlGroup of a chief on the restaurant who can manage the master-data such as offers, products, and other
    * {@link io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember}s.
    */
+  CHIEF("Chief"),
+
+  /**
+   * AccessControlGroup of a manager on the restaurant who can manage the master-data such as supplier
+   * {@link io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember}s.
+   */
   // END ARCHETYPE SKIP
-  CHIEF("Chief");
+  MANAGER("Manager");
 
   private final String name;
 

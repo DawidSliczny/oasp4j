@@ -49,6 +49,8 @@ INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastna
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (1, 0, 0, 'cook', 'Carl', 'Cook');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (2, 0, 1, 'waiter', 'Willy', 'Waiter');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (3, 0, 2, 'barkeeper', 'Bianca', 'Barkeeper');
+INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (4, 0, 4, 'manager', 'Marco', 'Manager');
+
 
 INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (1, 0, 'Natural Fruit Exports', 'Fruit', 4);
 INSERT INTO Supplier (id, modificationCounter, name, description, rate) VALUES (2, 0, 'CPS Gourmet', 'Meat', 5);
