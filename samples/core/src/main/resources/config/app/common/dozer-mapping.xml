@@ -50,4 +50,16 @@
       <b is-accessible="true">persistentEntity</b>
     </field>
   </mapping>
+  
+  <mapping>
+    <class-a>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto</class-a>
+    <class-b>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity</class-b>
+    <field>
+      <a set-method="setActivePeriod">activePeriod</a>
+      <b set-method="setActivePeriod">activePeriod</b>
+      <a-hint>io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod</a-hint>
+      <b-hint>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable</b-hint>
+    </field>
+  </mapping>
+  
 </mappings>
