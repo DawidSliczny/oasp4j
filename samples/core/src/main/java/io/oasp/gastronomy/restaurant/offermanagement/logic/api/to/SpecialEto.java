@@ -3,7 +3,7 @@ package io.oasp.gastronomy.restaurant.offermanagement.logic.api.to;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.validation.NotNegativeMoney;
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.Special;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod;
 import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**
@@ -19,7 +19,7 @@ public class SpecialEto extends AbstractEto implements Special {
 
   private Long offerId;
 
-  private WeeklyPeriodEmbeddable activePeriod;
+  private WeeklyPeriod activePeriod;
 
   @Override
   public Long getOfferId() {
@@ -34,13 +34,13 @@ public class SpecialEto extends AbstractEto implements Special {
   }
 
   @Override
-  public WeeklyPeriodEmbeddable getActivePeriod() {
+  public WeeklyPeriod getActivePeriod() {
 
     return this.activePeriod;
   }
 
   @Override
-  public void setActivePeriod(WeeklyPeriodEmbeddable activePeriod) {
+  public void setActivePeriod(WeeklyPeriod activePeriod) {
 
     this.activePeriod = activePeriod;
   }

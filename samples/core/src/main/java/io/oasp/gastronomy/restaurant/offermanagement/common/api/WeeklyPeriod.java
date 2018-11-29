@@ -6,45 +6,53 @@ import java.time.DayOfWeek;
  * @author DSLICZNY
  *
  */
-public interface WeeklyPeriod {
+public class WeeklyPeriod {
 
-  /**
-   * @return startingDay
-   */
-  public DayOfWeek getStartingDay();
+  protected DayOfWeek startingDay;
 
-  /**
-   * @param startingDay new value of {@link #getstartingDay}.
-   */
-  public void setStartingDay(DayOfWeek startingDay);
+  protected int startingHour;
 
-  /**
-   * @return startingHour
-   */
-  public int getStartingHour();
+  protected DayOfWeek endingDay;
 
-  /**
-   * @param startingHour new value of {@link #getstartingHour}.
-   */
-  public void setStartingHour(int startingHour);
+  protected int endingHour;
 
-  /**
-   * @return endingDay
-   */
-  public DayOfWeek getEndingDay();
+  public DayOfWeek getStartingDay() {
 
-  /**
-   * @param endingDay new value of {@link #getendingDay}.
-   */
-  public void setEndingDay(DayOfWeek endingDay);
+    return this.startingDay;
+  }
 
-  /**
-   * @return endingHour
-   */
-  public int getEndingHour();
+  public void setStartingDay(DayOfWeek startingDay) {
 
-  /**
-   * @param endingHour new value of {@link #getendingHour}.
-   */
-  public void setEndingHour(int endingHour);
+    this.startingDay = startingDay;
+  }
+
+  public int getStartingHour() {
+
+    return this.startingHour;
+  }
+
+  public void setStartingHour(int startingHour) {
+
+    this.startingHour = startingHour;
+  }
+
+  public DayOfWeek getEndingDay() {
+
+    return this.endingDay;
+  }
+
+  public void setEndingDay(DayOfWeek endingDay) {
+
+    this.endingDay = endingDay;
+  }
+
+  public int getEndingHour() {
+
+    return this.endingHour;
+  }
+
+  public void setEndingHour(int endingHour) {
+
+    this.endingHour = endingHour;
+  }
 }

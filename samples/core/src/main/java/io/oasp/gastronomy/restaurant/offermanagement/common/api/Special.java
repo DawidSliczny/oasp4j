@@ -2,7 +2,6 @@ package io.oasp.gastronomy.restaurant.offermanagement.common.api;
 
 import io.oasp.gastronomy.restaurant.general.common.api.ApplicationEntity;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable;
 
 /**
  * @author DSLICZNY
@@ -33,12 +32,12 @@ public interface Special extends ApplicationEntity {
   /**
    * @return activePeriod
    */
-  public WeeklyPeriodEmbeddable getActivePeriod();
+  public WeeklyPeriod getActivePeriod();
 
   /**
    * @param activePeriod new value of {@link #getactivePeriod}.
    */
-  public void setActivePeriod(WeeklyPeriodEmbeddable activePeriod);
+  public void setActivePeriod(WeeklyPeriod activePeriod);
 
   /**
    * @return specialPrice

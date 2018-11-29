@@ -17,8 +17,8 @@ import io.oasp.gastronomy.restaurant.SpringBootApp;
 import io.oasp.gastronomy.restaurant.general.common.TestUtil;
 import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferSearchCriteriaTo;
@@ -133,7 +133,7 @@ public class OffermanagementImplITest extends ComponentTest {
     assertThat(special.getId()).isNull();
     special.setName(name);
     special.setSpecialPrice(new Money(new BigDecimal(50)));
-    WeeklyPeriodEmbeddable activePeriod = new WeeklyPeriodEmbeddable();
+    WeeklyPeriod activePeriod = new WeeklyPeriod();
     activePeriod.setEndingHour(23);
     activePeriod.setStartingHour(0);
     activePeriod.setStartingDay(DayOfWeek.MONDAY);
